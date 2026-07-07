@@ -1,0 +1,261 @@
+   <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Club Portal</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo-section">
+
+    <img src="{{ url_for('static', filename='images/college_logo.png') }}"
+         class="college-logo"
+         alt="College Logo">
+
+    <h4 class="college-name">
+        AVN Institute of Engineering & Technology
+    </h4>
+
+    <p class="portal-name">
+        Campus Club Portal
+    </p>
+
+</div>
+        <ul class="menu">
+
+            <li>
+                <a href="{{ url_for('dashboard') }}">
+    <i class="bi bi-house-door-fill"></i>
+    Dashboard
+</a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('clubs') }}">
+                    <i class="bi bi-people-fill"></i>
+                    Clubs
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('events') }}">
+                    <i class="bi bi-calendar-event-fill"></i>
+                    Events
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('add_club') }}">
+                    <i class="bi bi-plus-circle-fill"></i>
+                    Add Club
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('add_event') }}">
+                    <i class="bi bi-calendar-plus-fill"></i>
+                    Add Event
+                </a>
+            </li>
+
+            <ul class="menu">
+
+<li><a href="{{ url_for('dashboard') }}">
+<i class="bi bi-speedometer2"></i> Dashboard
+</a></li>
+
+<li><a href="{{ url_for('clubs') }}">
+<i class="bi bi-people-fill"></i> Clubs
+</a></li>
+
+<li><a href="{{ url_for('events') }}">
+<i class="bi bi-calendar-event-fill"></i> Events
+</a></li>
+
+{% if session.get("admin") %}
+
+<li><a href="{{ url_for('add_club') }}">
+<i class="bi bi-plus-circle-fill"></i> Add Club
+</a></li>
+
+<li><a href="{{ url_for('add_event') }}">
+<i class="bi bi-calendar-plus-fill"></i> Add Event
+</a></li>
+
+<li><a href="{{ url_for('registrations') }}">
+<i class="bi bi-card-list"></i> Registrations
+</a></li>
+
+{% endif %}
+
+{% if session.get("student") %}
+
+<li><a href="{{ url_for('register') }}">
+<i class="bi bi-pencil-square"></i> Register Event
+</a></li>
+
+{% endif %}
+
+<li><a href="{{ url_for('about') }}">
+<i class="bi bi-info-circle-fill"></i> About
+</a></li>
+
+<li><a href="{{ url_for('contact') }}">
+<i class="bi bi-envelope-fill"></i> Contact
+</a></li>
+
+<li><a href="{{ url_for('logout') }}">
+<i class="bi bi-box-arrow-right"></i> Logout
+</a></li>
+
+</ul>
+            </li>
+
+            <li>
+                <a href="{{ url_for('registrations') }}">
+                    <i class="bi bi-card-list"></i>
+                    Registrations
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-info-circle-fill"></i>
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-envelope-fill"></i>
+                    Contact
+                </a>
+                {% if session.get("admin") %}
+
+<li>
+    <a href="{{ url_for('add_club') }}">
+        <i class="bi bi-plus-circle-fill"></i>
+        Add Club
+    </a>
+</li>
+
+<li>
+    <a href="{{ url_for('add_event') }}">
+        <i class="bi bi-calendar-plus-fill"></i>
+        Add Event
+    </a>
+</li>
+
+<li>
+    <a href="{{ url_for('registrations') }}">
+        <i class="bi bi-card-list"></i>
+        Registrations
+    </a>
+</li>
+
+{% endif %}
+{% if session.get("student") %}
+
+<li>
+    <a href="{{ url_for('register') }}">
+        <i class="bi bi-person-plus-fill"></i>
+        Register Event
+    </a>
+</li>
+
+{% endif %}
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Top Navbar -->
+        <nav class="top-navbar">
+
+            <h2>Campus Club Portal</h2>
+
+            <div class="admin">
+                <i class="bi bi-person-circle"></i>
+                <span>Admin</span>
+            </div>
+
+        </nav>
+
+        <!-- Dynamic Content -->
+        <div class="content">
+
+            {% block content %}
+            {% endblock %}
+            <div id="loader">
+
+<div class="spinner-border text-primary"></div>
+
+</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<footer class="footer mt-5">
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<hr>
+
+<p class="text-center">
+
+<strong>AVN Institute of Engineering & Technology</strong>
+
+<br>
+
+Campus Club Portal
+
+<br>
+
+Developed by Garipelly Rithesh Kumar
+
+<br>
+
+© 2026 All Rights Reserved
+
+</p>
+
+</footer>
+</body>
+
+</html>

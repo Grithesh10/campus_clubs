@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Campus Clubs</h2>
+
+        <a href="/add-club" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i>
+            Add Club
+        </a>
+    </div>
+    <form method="GET" action="{{ url_for('clubs') }}" class="mb-4">
+
+    <div class="input-group">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search clubs by name..."
+            value="{{ request.args.get('search', '') }}">
+
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search"></i> Search
+        </button>
+
+    </div>
+
+</form>
+
+    <div class="row">
+
+        {% for club in clubs %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card club-card h-100 shadow">
+
+                <div class="card-body text-center">
+
+                    <img src="{{ url_for('static', filename='images/' + club.logo) }}"
+                         class="club-logo">
+
+                    <h4>
+
+    <a href="{{ url_for('club_details', id=club.id) }}"
+       class="text-decoration-none">
+
+        {{ club.club_name }}
+
+    </a>
+
+</h4>
+
+                    <span class="badge bg-primary">
+                        {{ club.category }}
+                    </span>
+
+                    <p class="text-muted mt-3">
+                        {{ club.description }}
+                    </p>
+
+                    <div class="d-grid gap-2">
+
+                        <a href="#" class="btn btn-warning">
+                            <i class="bi bi-pencil-square"></i>
+                            Edit
+                        </a>
+{% if "admin" in session %}
+
+<a href="{{ url_for('delete_club', id=club.id) }}"
+   class="btn btn-danger"
+   onclick="return confirm('Are you sure you want to delete this club?')">
+
+    <i class="bi bi-trash"></i>
+    Delete
+
+</a>
+
+{% endif %}
+   
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

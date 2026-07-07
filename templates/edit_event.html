@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow p-4">
+
+        <h2 class="mb-4">Edit Event</h2>
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Event Name</label>
+                <input
+                    type="text"
+                    name="event_name"
+                    class="form-control"
+                    value="{{ event.event_name }}"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Club</label>
+
+                <select
+                    name="club_name"
+                    class="form-select"
+                    required>
+
+                    {% for club in clubs %}
+
+                    <option value="{{ club.club_name }}"
+                        {% if club.club_name == event.club_name %}selected{% endif %}>
+                        {{ club.club_name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Event Date</label>
+
+                <input
+                    type="date"
+                    name="event_date"
+                    class="form-control"
+                    value="{{ event.event_date }}"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Venue</label>
+
+                <input
+                    type="text"
+                    name="venue"
+                    class="form-control"
+                    value="{{ event.venue }}"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+
+                <textarea
+                    name="description"
+                    class="form-control"
+                    rows="4"
+                    required>{{ event.description }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i> Update Event
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

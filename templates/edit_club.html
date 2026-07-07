@@ -1,0 +1,68 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow p-4">
+
+        <h2 class="mb-4">Edit Club</h2>
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Club Name</label>
+                <input
+                    type="text"
+                    name="club_name"
+                    class="form-control"
+                    value="{{ club.club_name }}"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <input
+                    type="text"
+                    name="category"
+                    class="form-control"
+                    value="{{ club.category }}"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea
+                    name="description"
+                    class="form-control"
+                    rows="4"
+                    required>{{ club.description }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Logo Filename</label>
+                <input
+                    type="text"
+                    name="logo"
+                    class="form-control"
+                    value="{{ club.logo }}"
+                    required>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i>
+                Update Club
+            </button>
+
+            <a href="{{ url_for('clubs') }}" class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
