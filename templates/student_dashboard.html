@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Welcome, {{ student.name }}</h2>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h4>Available Clubs</h4>
+
+                {% for club in clubs %}
+                    <div class="mb-3">
+                        <h5>{{ club.club_name }}</h5>
+                        <p>{{ club.category }}</p>
+                        <p>{{ club.description }}</p>
+                    </div>
+                {% else %}
+                    <p>No clubs available.</p>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h4>Upcoming Events</h4>
+
+                {% for event in events %}
+                    <div class="mb-3">
+                        <h5>{{ event.event_name }}</h5>
+                        <p>{{ event.club_name }}</p>
+                        <p>{{ event.event_date }}</p>
+                    </div>
+                {% else %}
+                    <p>No events available.</p>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

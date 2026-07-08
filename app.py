@@ -214,8 +214,11 @@ def add_club():
         return redirect(url_for("login"))
 
     if request.method == "POST":
+        print("POST RECEIVED")
+        print(request.form)
+    
 
-        filename = ""
+    
 
         if "logo" in request.files:
 

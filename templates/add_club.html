@@ -6,22 +6,28 @@
 
     <h2>Add New Club</h2>
 
-    <form method="POST" enctype="multipart/form-data"></form>
+    <form method="POST" enctype="multipart/form-data">
 
         <div class="mb-3">
+            <label class="form-label">Club Name</label>
+            <input
+                type="text"
+                name="club_name"
+                class="form-control"
+                placeholder="Enter Club Name"
+                required>
+        </div>
 
-    <label class="form-label">
-        Club Logo
-    </label>
+        <div class="mb-3">
+            <label class="form-label">Club Logo</label>
+            <input
+                type="file"
+                name="logo"
+                class="form-control"
+                accept=".png,.jpg,.jpeg"
+                required>
+        </div>
 
-    <input
-        type="file"
-        name="logo"
-        class="form-control"
-        accept=".png,.jpg,.jpeg"
-        required>
-
-</div>
         <div class="mb-3">
             <label class="form-label">Category</label>
             <input
@@ -38,16 +44,6 @@
                 class="form-control"
                 rows="4"
                 required></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Logo Filename</label>
-            <input
-                type="text"
-                name="logo"
-                class="form-control"
-                placeholder="Example: literary_club.png"
-                required>
         </div>
 
         <button type="submit" class="btn btn-primary">
